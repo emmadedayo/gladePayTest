@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:weather/core/themes/app_color.dart';
+import 'package:weather/logic/state/app_state.dart';
 
 import '../../../../core/constants/colors.dart';
 import '../../../../core/utilities/app_utility.dart';
@@ -8,7 +9,8 @@ import '../../../../data/entities/hour_entity/hour_entity.dart';
 
 class CurrentTimeWidget extends StatelessWidget {
   final Hour hours;
-  const CurrentTimeWidget({Key? key, required this.hours})
+  final AppState appState;
+  const CurrentTimeWidget({Key? key, required this.hours,required this.appState})
         : super(key: key);
 
   @override
@@ -18,13 +20,13 @@ class CurrentTimeWidget extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            '${hours.tempC}°C',
+            AppUtility.getOption(appState.tempOption,hours.tempC,hours.tempF),
             style:AppStyle.textStyle(context, AppColor.colorWhite, 11, FontWeight.normal,[]),
             textAlign: TextAlign.left,
           ),
           const SizedBox(height: 20,),
           Image.network(
-            'https:${hours.condition?.icon}',
+            'https:${hours.condition.icon}',
             height: 50.h,
             width: 50.w,
           ),

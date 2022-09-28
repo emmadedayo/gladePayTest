@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:weather/core/constants/router_constant.dart';
 import 'package:weather/core/themes/app_color.dart';
 import 'package:weather/logic/state/app_state.dart';
+import 'package:weather/presentation/screens/home/component/settings_widget.dart';
 
 import '../../../../core/constants/colors.dart';
 import 'notification_widget.dart';
 
 class UpperAppBarWidget extends StatelessWidget {
   final AppState appState;
-  const UpperAppBarWidget({Key? key, required this.appState})
+  final VoidCallback callBack;
+  const UpperAppBarWidget({Key? key, required this.appState, required this.callBack})
       : super(key: key);
 
   @override
@@ -45,11 +47,16 @@ class UpperAppBarWidget extends StatelessWidget {
                       topRight: Radius.circular(30.0),
                     )),
                 context: context,
-                builder: (BuildContext bc) {
+                builder: (context) {
                   return const NotificationWidget();
                 },
               );
             },
+          ),
+          const SizedBox(width: 10),
+          GestureDetector(
+            onTap: callBack,
+            child:const Icon(Icons.settings,color: AppColor.colorWhite,),
           )
         ],
       ),

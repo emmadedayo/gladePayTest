@@ -2,9 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:retrofit/http.dart';
 import 'package:weather/data/entities/forcast_response/forcast_response_entity.dart';
 import 'package:weather/data/entities/location_search/location_search_entity.dart';
-
 import '../entities/current_location/current_location.dart';
-import '../entities/history/history_entity.dart';
 
 part 'http_rest.g.dart';
 
@@ -50,14 +48,5 @@ abstract class RestClient {
   Future<List<LocationSearch>> getSearchLocationWeather(
       @Path("key") String key,
       @Path("q") String q
-      );
-
-  //https://api.weatherapi.com/v1/history.json?key=b9eb4804274843c6b86145413222609&q=7.3567565,3.7976516&dt=2021-10-29
-
-  @GET("/history.json/{key}/{q}/{dt}")
-  Future<HistoryEntity> getHistoryLocationWeather(
-      @Path("key") String key,
-      @Path("q") String q,
-      @Path("dt") String dt
       );
 }

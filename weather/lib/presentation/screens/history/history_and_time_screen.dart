@@ -140,7 +140,7 @@ class HistoryTimeScreenState extends State<HistoryTimeScreen> {
                                   itemCount: widget.hours?.length,
                                   controller: scrollController,
                                   itemBuilder: (context, index) {
-                                    return CurrentTimeWidget(hours: widget.hours![index],);
+                                    return CurrentTimeWidget(hours: widget.hours![index],appState: emeState,);
                                   },
                                 ),
                               ),
@@ -168,7 +168,7 @@ class HistoryTimeScreenState extends State<HistoryTimeScreen> {
                                 physics: const NeverScrollableScrollPhysics(),
                                 itemCount: widget.future?.length,
                                 itemBuilder: (context, index) {
-                                  return HistoryWeatherWidget(foreCastDay: widget.future![index],);
+                                  return HistoryWeatherWidget(foreCastDay: widget.future![index],appState: emeState,);
                                 },
                               ),
                             ],

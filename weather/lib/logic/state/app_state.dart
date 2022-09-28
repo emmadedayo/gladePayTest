@@ -1,5 +1,4 @@
 import 'package:geolocator/geolocator.dart';
-import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:weather/data/entities/forcast_day_entity/forcast_day_entity.dart';
 import 'package:weather/data/entities/hour_entity/hour_entity.dart';
 
@@ -11,7 +10,7 @@ class AppState {
 
   Position? position, lastKnownPositions;
   String address = 'Enter Drop Off Location';
-  String? message = '';
+  String? tempOption;
   bool isLoading;
   LocationSettings locationSettings = const LocationSettings();
   CurrentLocation? currentLocation;
@@ -19,20 +18,15 @@ class AppState {
   List<Hour>? todayForCast;
   List<ForeCastDay>? futureForCast;
 
-  ItemScrollController? itemScrollController = ItemScrollController();
-  ItemPositionsListener? itemPositionsListener = ItemPositionsListener.create();
-
   AppState({
     this.position,
     this.lastKnownPositions,
     this.isLoading: false,
-    this.message,
+    this.tempOption,
     this.currentLocation,
     this.forCastResponseEntity,
     this.todayForCast,
     this.futureForCast,
-    this.itemPositionsListener,
-    this.itemScrollController,
   });
 
   AppState copy() {
@@ -43,10 +37,9 @@ class AppState {
         todayForCast: todayForCast,
         futureForCast: futureForCast,
         forCastResponseEntity: forCastResponseEntity,
-        itemPositionsListener: itemPositionsListener,
+        tempOption: tempOption,
     );
 
-    copy.message = message;
     copy.locationSettings = locationSettings;
     copy.forCastResponseEntity = forCastResponseEntity;
     copy.address = address;

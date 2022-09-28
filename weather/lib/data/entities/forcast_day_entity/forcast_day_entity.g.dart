@@ -10,7 +10,6 @@ ForeCastDay _$ForeCastDayFromJson(Map<String, dynamic> json) => ForeCastDay(
       json['date'] as String,
       json['date_epoch'] as int,
       Day.fromJson(json['day'] as Map<String, dynamic>),
-      Astro.fromJson(json['astro'] as Map<String, dynamic>),
       (json['hour'] as List<dynamic>)
           .map((e) => Hour.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -21,6 +20,5 @@ Map<String, dynamic> _$ForeCastDayToJson(ForeCastDay instance) =>
       'date': instance.date,
       'date_epoch': instance.dateEpoch,
       'day': instance.day,
-      'astro': instance.astro,
       'hour': instance.hour,
     };

@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:weather/core/constants/colors.dart';
 import 'package:weather/core/themes/app_color.dart';
+import 'package:weather/core/utilities/app_utility.dart';
 import 'package:weather/logic/state/mapState.dart';
 
 
@@ -68,7 +69,7 @@ class MapScreenComponent extends StatelessWidget {
               ),
               const SizedBox(height: 20,),
               Text(
-                '${mapState.currentLocation?.current.tempC}\u00B0',
+                AppUtility.getOption(mapState.tempOption,mapState.currentLocation?.current.tempC,mapState.currentLocation?.current.tempF),
                 style:AppStyle.textStyle(context, AppColor.colorWhite, 70, FontWeight.w600,[
                   const Shadow(
                     offset: Offset(0.1, 0.1),

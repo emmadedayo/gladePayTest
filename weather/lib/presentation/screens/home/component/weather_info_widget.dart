@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:weather/core/themes/app_color.dart';
+import 'package:weather/core/utilities/app_utility.dart';
 import 'package:weather/logic/state/app_state.dart';
 
 import '../../../../core/constants/colors.dart';
@@ -46,7 +47,7 @@ class WeatherInformationWidget extends StatelessWidget {
           ),
           const SizedBox(height: 10,),
           Text(
-            '${appState.currentLocation?.current.tempC}\u00B0',
+            AppUtility.getOption(appState.tempOption,appState.currentLocation?.current.tempC,appState.currentLocation?.current.tempF),
             style:AppStyle.textStyle(context, AppColor.colorWhite, 70, FontWeight.w400,[
               const Shadow(
                   offset: Offset(1.5, 1.9),
