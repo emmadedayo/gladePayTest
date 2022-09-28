@@ -44,4 +44,14 @@ class AppUtility{
     String formatTime = DateFormat("MMM,  dd").format(parsedDateTime);
     return formatTime;
   }
+
+  static String getOption(unit,degreeInC,degreeInF){
+    if(unit == "C"){
+      return "$degreeInC°C";
+    }else if(unit == "F"){
+      return "$degreeInF°F";
+    }else{
+      return "$degreeInC°o";
+    }
+  }
 }

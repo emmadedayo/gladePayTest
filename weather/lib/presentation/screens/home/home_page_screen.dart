@@ -10,6 +10,7 @@ import 'package:weather/presentation/screens/home/component/upper_appbar_widget.
 import 'package:weather/presentation/screens/home/component/weather_info_widget.dart';
 
 import '../../../core/constants/colors.dart';
+import 'component/settings_widget.dart';
 import 'component/weather_image.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -62,7 +63,26 @@ class HomeScreenState extends State<HomeScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        UpperAppBarWidget(appState: emeState,),
+                        UpperAppBarWidget(appState: emeState,callBack: () async {
+                          await showModalBottomSheet(
+                            enableDrag: true,
+                            isDismissible: true,
+                            isScrollControlled: true,
+                            shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(30.0),
+                                  topRight: Radius.circular(30.0),
+                                )),
+                            context: context,
+                            builder: (context) {
+                              return SettingsWidget(appState: emeState,);
+                            },
+                          ).then((value){
+                            if(value.toString().isNotEmpty || value.toString()!=null){
+                              contextCubit.read<AppCubit>().changeTempOption(value);
+                            }
+                          });
+                        },),
                         const SizedBox(height: 10),
                         WeatherImageWidget(appState: emeState,),
                         WeatherInformationWidget(appState: emeState,),

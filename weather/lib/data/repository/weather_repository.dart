@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:weather/data/entities/current_location/current_location.dart';
-import 'package:weather/data/entities/history/history_entity.dart';
 import 'package:weather/data/entities/location_search/location_search_entity.dart';
 
 import '../entities/forcast_response/forcast_response_entity.dart';
@@ -11,7 +11,7 @@ class WeatherRepository{
 
   Dio dio = Dio();
   RestClient? apiClient;
-
+  late SharedPreferences prefs;
   var apiKey = "b9eb4804274843c6b86145413222609";
 
   WeatherRepository(){
@@ -47,4 +47,16 @@ class WeatherRepository{
     }
     return null;
   }
+
+  Future<String?> getTempOption() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString('temperatureOption') ?? 'C';
+  }
+
+  Future<bool> saveOption(String tempDisplay) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    // Save the language
+    return await prefs.setString('temperatureOption', tempDisplay);
+  }
+
 }

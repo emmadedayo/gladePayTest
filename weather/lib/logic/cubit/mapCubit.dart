@@ -42,6 +42,7 @@ class MapCubit extends Cubit<MapState> {
             ),
           ),
         );
+        state.tempOption = await weatherRepository.getTempOption();
         state.currentLocation = await weatherRepository.getCurrentLocationWeather('${state.position?.latitude},${state.position?.longitude}');
       }
     } else {

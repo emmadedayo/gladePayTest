@@ -32,8 +32,7 @@ class AppCubit extends Cubit<AppState> {
         state.forCastResponseEntity = await weatherRepository.getForecastLocationWeather('${state.position?.latitude ?? 0.0},${state.position?.longitude ?? 0.0}');
         state.todayForCast?.addAll(state.forCastResponseEntity?.forecast.forecastday[0].hour ?? []);
         state.futureForCast?.addAll(state.forCastResponseEntity?.forecast.forecastday ?? []);
-
-        print("localtime ${state.forCastResponseEntity?.location.localtime}");
+        await getTempOption();
       }
     } else {
 
@@ -75,6 +74,22 @@ class AppCubit extends Cubit<AppState> {
         accuracy: LocationAccuracy.high,
         distanceFilter: 1,
       );
+    }
+    emit(state.copy());
+  }
+
+  changeTempOption(String option) async {
+    await weatherRepository.saveOption(option);
+    state.tempOption = option;
+    emit(state.copy());
+    await getTempOption();
+  }
+
+  getTempOption() async {
+    state.tempOption = await weatherRepository.getTempOption();
+    if(state.tempOption == null){
+      state.tempOption = 'C';
+      await weatherRepository.saveOption('C');
     }
     emit(state.copy());
   }

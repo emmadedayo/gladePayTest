@@ -23,6 +23,7 @@ class MapState {
   LocationSearch? selectedLocation;
   CurrentLocation? currentLocation;
   String searchLocation;
+  String? tempOption;
 
 
   MapState({
@@ -31,13 +32,14 @@ class MapState {
     this.message,this.isLoading: false,this.searchLoading: false,
     this.locationSearch = const [],
     this.selectedLocation,
+    this.tempOption,
     this.currentLocation,
     this.searchLocation: '',
   });
 
   MapState copy() {
     MapState copy = MapState(searchLocation:searchLocation,mapController: mapController, cameraPosition: cameraPosition, position: position, lastKnownPositions: lastKnownPositions, currentLatLng: currentLatLng,
-        locationSettings: locationSettings, message: message,isLoading: isLoading,searchLoading: searchLoading,currentLocation: currentLocation);
+        locationSettings: locationSettings, message: message,isLoading: isLoading,searchLoading: searchLoading,currentLocation: currentLocation,tempOption: tempOption,);
 
     copy.pickupMarker = pickupMarker;
     copy.locationSearch = locationSearch;
