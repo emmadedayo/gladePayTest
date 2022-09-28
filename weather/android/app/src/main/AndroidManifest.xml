@@ -1,10 +1,24 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.glade.weather">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
    <application
         android:label="weather"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
-        <activity
+
+       <meta-data
+           android:name="com.google.android.gms.version"
+           android:value="@integer/google_play_services_version" />
+
+       <meta-data android:name="com.google.android.geo.API_KEY"
+           android:value="AIzaSyD0fzc0Kgy_W1y3TxXOLy9AiNrbF4HUQHM"/>
+
+
+       <activity
             android:name=".MainActivity"
             android:exported="true"
             android:launchMode="singleTop"
