@@ -25,10 +25,10 @@ jobs:
     - uses: subosito/flutter-action@v1
       with:
         flutter-version: '1.17.0'
-    - run: flutter pub get
-    - run: flutter test
-    - run: flutter build apk --release --split-per-abi
-    - run: flutter build appbundle
+    - run: weather/flutter pub get
+    - run: weather/flutter test
+    - run: weather/flutter build apk --release --split-per-abi
+    - run: weather/flutter build appbundle
     - name: Create a Release in GitHub
       uses: ncipollo/release-action@v1
       with:
