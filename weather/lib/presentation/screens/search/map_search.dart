@@ -60,8 +60,8 @@ class _MapSearchScreenState extends State<MapSearchScreen> {
                             markers: mapState.markers,
                             initialCameraPosition: CameraPosition(
                               target: LatLng(
-                                  mapState.position != null ? mapState.position!.latitude : mapState.lastKnownPositions!.latitude ?? mapState.position!.latitude,
-                                  mapState.position != null ? mapState.position!.longitude : mapState.lastKnownPositions!.longitude ?? mapState.position!.longitude),
+                                  mapState.position != null ? mapState.position!.latitude : mapState.lastKnownPositions!.latitude,
+                                  mapState.position != null ? mapState.position!.longitude : mapState.lastKnownPositions!.longitude),
                               zoom: 10,
                             ),
                             onCameraMove: (CameraPosition position) {

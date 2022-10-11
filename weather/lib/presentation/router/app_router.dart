@@ -15,7 +15,7 @@ class AppRouter {
             builder: (_) => const HomeScreen()
         );
       case historyTime:
-        return MaterialPageRoute(builder: (_) => HistoryTimeScreen(history: arguments!['history'],hours: arguments!['hours'],future: arguments!['future']));
+        return MaterialPageRoute(builder: (_) => HistoryTimeScreen(history: arguments!['history'],hours: arguments['hours'],future: arguments['future']));
       case locationSearch:
         return MaterialPageRoute(
             builder: (_) => const MapSearchScreen()
